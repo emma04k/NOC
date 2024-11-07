@@ -38,4 +38,21 @@ export class LogEntity  {
         );
         return logEntity;
     }
+
+    static fromObject =(object : {[key: string]: any}): LogEntity => {
+        const { message, level, origin , createdAt } = object;
+        if (!message) {
+            throw new Error('Is necessary the message');
+        }
+
+        const logEntity = new LogEntity({
+            message,
+            level,
+            origin,
+            createdAt,
+        });
+
+        return logEntity
+    }
+
 }

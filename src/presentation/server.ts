@@ -1,19 +1,19 @@
-import { CronService } from "./cron/cron-service";
-import { CheckService } from "../domain/use-cases/check-service";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
-import { FileSystemDataSource } from "../infrastructure/dataSources/file-system.dataSource";
 import { EmailService } from "./email/email-service";
-import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
+import { MongoDataSource } from "../infrastructure/dataSources/mongo-.dataSource";
+import { LogSeverityLevel } from "../domain/entities/log.entity";
+import { FileSystemDataSource } from "../infrastructure/dataSources/file-system.dataSource";
 
-const fileSystemLogRepository = new LogRepositoryImpl(
-    new FileSystemDataSource(),
+const LogRepository = new LogRepositoryImpl(
+    // new FileSystemDataSource(),
+    new MongoDataSource(),
 );
 
 const emailService = new EmailService();
 
 export class Server {
 
-    public static start() {
+    public static async start() {
 
 //TODO: MANDAR EMAIL
 
@@ -22,11 +22,16 @@ export class Server {
         //
         // new SendEmailLogs(emailService,fileSystemLogRepository).execute("emaortegag16dev@gmail.com");
         console.log('Server started...');
+
+        const logs = await LogRepository.getLogs(LogSeverityLevel.medium);
+        console.log(logs);
+
+
         // CronService.createJob("*/5 * * * * *", () => {
-        //     // const  url = 'http://google.com';
-        //     const  url ='http://localhost:3000/';
+        //     const  url = 'http://google.com';
+        //     // const  url ='http://localhost:3000/';
         //     new CheckService(
-        //         fileSystemLogRepository,
+        //         LogRepository,
         //         ()=> console.log(`${url} is ok`),
         //         (error)=> console.log(error)
         //     ).execute(url);
