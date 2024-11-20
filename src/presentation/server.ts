@@ -31,10 +31,10 @@ export class Server {
         // new SendEmailLogs(emailService,fileSystemLogRepository).execute("emaortegag16dev@gmail.com");
         console.log('Server started...');
 
-        const logs = await FSLogRepository.getLogs(LogSeverityLevel.low);
-        logs.push(...await MongoLogRepository.getLogs(LogSeverityLevel.medium));
-        logs.push(...await PostgresLogRepository.getLogs(LogSeverityLevel.high));
-        console.log(logs);
+        // const logs = await FSLogRepository.getLogs(LogSeverityLevel.low);
+        // logs.push(...await MongoLogRepository.getLogs(LogSeverityLevel.medium));
+        // logs.push(...await PostgresLogRepository.getLogs(LogSeverityLevel.high));
+        // console.log(logs);
 
 
 

@@ -10,7 +10,7 @@ export class FileSystemDataSource implements LogDataSource {
     private readonly highLogsPath = 'logs/high.log';
 
     constructor() {
-
+        this.createLogsFiLe();
     }
 
     private createLogsFiLe = ()=>{
@@ -31,7 +31,7 @@ export class FileSystemDataSource implements LogDataSource {
 
     async saveLog(newLog: LogEntity): Promise<void> {
 
-        this.createLogsFiLe()
+        this.createLogsFiLe();
 
         const logToJson = `${JSON.stringify(newLog)}\n`;
         fs.appendFileSync(this.allLogsPath, logToJson);
