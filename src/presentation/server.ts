@@ -4,6 +4,8 @@ import { MongoDataSource } from "../infrastructure/dataSources/mongo-.dataSource
 import { LogSeverityLevel } from "../domain/entities/log.entity";
 import { FileSystemDataSource } from "../infrastructure/dataSources/file-system.dataSource";
 import { PostgresLogDataSource } from "../infrastructure/dataSources/postgres-log-dataSource";
+import { CronService } from "./cron/cron-service";
+import { CheckServiceMultiple } from "../domain/use-cases/check-service-multiple";
 
 const FSLogRepository = new LogRepositoryImpl(
     new FileSystemDataSource(),
@@ -37,10 +39,9 @@ export class Server {
         // console.log(logs);
 
 
-
         // CronService.createJob("*/5 * * * * *", () => {
-        //     const  url = 'http://google.com';
-        //     // const  url ='http://localhost:3000/';
+        //     // const  url = 'http://google.com';
+        //     const  url ='http://localhost:3000/';
         //     new CheckServiceMultiple(
         //         [FSLogRepository,MongoLogRepository,PostgresLogRepository],
         //         ()=> console.log(`${url} is ok`),

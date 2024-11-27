@@ -6,7 +6,8 @@
 # Iniciar
 1. Ejecutar el comando ``npm install``
 2. Levantar las base de datos ``docker compose up -d`` 
-3. Ejecutar ``npm run dev``
+3. Ejecutar el comando ``npx prisma migrate dev``
+4. Ejecutar ``npm run dev``
 
 ## Obtener Gmail Key
 [Google AppPasswords](https://myaccount.google.com/u/0/apppasswords)

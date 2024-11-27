@@ -33,9 +33,10 @@ export class LogEntity  {
                 message,
                 level,
                 origin,
-                createdAt,
+                createdAt : new Date(createdAt),
             }
         );
+
         return logEntity;
     }
 
@@ -45,14 +46,11 @@ export class LogEntity  {
             throw new Error('Is necessary the message');
         }
 
-        const logEntity = new LogEntity({
+        return new LogEntity({
             message,
             level,
             origin,
             createdAt,
-        });
-
-        return logEntity
+        })
     }
-
 }

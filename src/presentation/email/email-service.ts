@@ -10,7 +10,7 @@ export interface  SendEmailRequest {
     attachments?: Attachments[];
 }
 
-interface Attachments {
+export interface Attachments {
     fileName: string;
     path: string;
 }
